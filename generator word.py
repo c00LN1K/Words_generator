@@ -82,4 +82,13 @@ while (k != 'exit'):
     finally:
         k = input('> ')
 
+for i in range(10):
+    s=""
+    head = random.choice(tokens)
+    s += head
+    for j in range(9):
+        #print(markov[head].keys(),markov[head].values())
+        head = random.choices(tuple(markov[head].keys()),tuple(markov[head].values()))[0]
+        s += " " + head
+    print(s)
 
