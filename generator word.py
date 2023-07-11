@@ -92,3 +92,16 @@ for i in range(10):
         s += " " + head
     print(s)
 
+for i in range(10):
+    s=[]
+    while True:
+        head = random.choice(tokens)
+        if (head.isalnum()):
+            break
+    s.append(head.title())
+    while len(s) < 5 or head[-1] not in '.!?':
+        head = random.choices(tuple(markov[head].keys()),tuple(markov[head].values()))[0]
+        s.append(head)
+    print(" ".join(s))
+
+
