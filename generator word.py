@@ -1,5 +1,6 @@
 import nltk
-
+from collections import Counter
+import random
 from nltk.probability import FreqDist
 
 while True:
@@ -48,7 +49,7 @@ while (k != 'exit'):
     try:
         k = int(k)
         head, tail = bigrams[k]
-        print(f'Голова: {head:10}\tХвост: {tail} ')
+        print(f'Голова: {head:10}Хвост: {tail} ')
     except TypeError as ex:
         print("TypeError")
     except IndexError as ex:
@@ -57,3 +58,28 @@ while (k != 'exit'):
         print("ValueError. Пожалуйста, введите число.")
     finally:
         k = input('> ')
+
+
+markov = {}
+
+for bigram in bigrams:
+    head,tail = bigram
+    markov.setdefault(head,{})
+    markov[head].setdefault(tail,0)
+    markov[head][tail] += 1
+
+k = input(
+    f'Введите номер интересующее слово или exit для выхода\n> ')
+
+while (k != 'exit'):
+    try:
+        print(f"Head: {k}")
+        tails = markov[k]
+        for tail, count in sorted(tails.items(),key = lambda x: x[1])[::-1]:
+            print(f"Tail: {tail:10}Count :{count}")
+    except KeyError as ex:
+        print("KeyError. Запрашиваемое слово отсутствует в модели. Пожалуйста, введите другое слово.")
+    finally:
+        k = input('> ')
+
+
