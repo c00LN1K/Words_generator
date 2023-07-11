@@ -4,17 +4,10 @@ from nltk.probability import FreqDist
 
 file = input('Введите название файла: corpus.txt or other\n> ')
 
-file = 'corpus.txt'
 file = open(file, encoding='utf-8')
 text = file.read()
 file.close()
 
-# region
-# tokens = nltk.word_tokenize(text) - токенизация по словам и знакам
-# unical_tokens = set(tokens) - словарь уникальных слов
-# print(tokens)
-# print(unical_tokens)
-# endregion
 
 tokens = nltk.regexp_tokenize(text, "[^ \t\n]+")
 
